@@ -16,8 +16,8 @@ int main(int argc, char* argv[]) {
 
     try {
         // Load cities and travel propositions
-        agent.readCities("../data/cities.db");
-        agent.readTravelPropositions("../data/travel_proposition.db");
+        agent.readCities("data/cities.db");
+        agent.readTravelPropositions("data/travel_proposition.db");
 
         // Find trip
         if (agent.getTrip(origin, destination)) {
