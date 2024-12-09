@@ -23,16 +23,19 @@ class Graph {
   bool contains(const std::string& city) const;
 
   // Dijkstra's Algorithm to find the shortest path
-  bool dijkstraShortestPath(const std::string& start, const std::string& end,
-                            std::vector<TravelProposition>& path, Measurement& distance);
+  bool dijkstraShortestPath(const std::string& start,
+                            const std::string& end,
+                            std::vector<TravelProposition>& path,
+                            Measurement& distance);
 
   // Display the graph
   void displayGraph() const;
 
  private:
-  std::set<std::string> vertices;                        // Set of cities (vertices)
-  std::set<TravelProposition> edges;                     // Set of travel propositions (edges)
-  std::unordered_map<std::string, std::vector<TravelProposition>> adjacencyList;  // Adjacency list
+  std::set<std::string> vertices;     // Set of cities (vertices)
+  std::set<TravelProposition> edges;  // Set of travel propositions (edges)
+  std::unordered_map<std::string, std::vector<TravelProposition>>
+      adjacencyList;  // Adjacency list
 
   // Helper to build adjacency list
   void updateAdjacencyList(const TravelProposition& proposition);

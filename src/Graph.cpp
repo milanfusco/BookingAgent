@@ -17,18 +17,19 @@ void Graph::addEdge(const TravelProposition& proposition) {
   const std::string& cityA = proposition.getCityA();
   const std::string& cityB = proposition.getCityB();
 
-  if (vertices.find(cityA) == vertices.end() || vertices.find(cityB) == vertices.end()) {
-        throw std::invalid_argument("One or both cities are not in the graph: " + cityA + " -> " + cityB);
+  if (vertices.find(cityA) == vertices.end() ||
+      vertices.find(cityB) == vertices.end()) {
+    throw std::invalid_argument(
+        "One or both cities are not in the graph: " + cityA + " -> " + cityB);
   }
 
   edges.insert(proposition);
   updateAdjacencyList(proposition);
 }
 
-
 // Check if a vertex exists in the graph
 bool Graph::contains(const std::string& city) const {
-    return vertices.find(city) != vertices.end();
+  return vertices.find(city) != vertices.end();
 }
 
 // Update adjacency list
@@ -47,7 +48,6 @@ void Graph::displayGraph() const {
     std::cout << "  " << edge.toString() << "\n";
   }
 }
-
 
 // Dijkstra's Algorithm to find the shortest path
 bool Graph::dijkstraShortestPath(const std::string& start,

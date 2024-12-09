@@ -58,8 +58,10 @@ void BookingAgent::readTravelPropositions(const std::string& filename) {
           Measurement(distanceValue, Unit(unit)).toKilometers();
 
       // Check if cities exist in the graph
-      bool cityAExists = flights.contains(cityA) || highSpeedRail.contains(cityA);
-      bool cityBExists = flights.contains(cityB) || highSpeedRail.contains(cityB);
+      bool cityAExists =
+          flights.contains(cityA) || highSpeedRail.contains(cityA);
+      bool cityBExists =
+          flights.contains(cityB) || highSpeedRail.contains(cityB);
 
       if (!cityAExists || !cityBExists) {
         std::cerr << "Error: One or both cities are missing in the graph: "
@@ -67,12 +69,11 @@ void BookingAgent::readTravelPropositions(const std::string& filename) {
         continue;
       }
 
-
       TravelProposition proposition(
           cityA, cityB, Measurement(distanceInKm, Unit("km")), mode);
 
       try {
-        if (mode == "flight") { // Mode 'f' for flight
+        if (mode == "flight") {  // Mode 'f' for flight
           flights.addEdge(proposition);
         } else if (mode == "r") {  // Mode 'r' for rail
           highSpeedRail.addEdge(proposition);
