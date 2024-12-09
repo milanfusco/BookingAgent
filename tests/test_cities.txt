@@ -1,4 +1,0 @@
-CityA
-CityB
-CityC
-CityD

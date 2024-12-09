@@ -1,6 +1,0 @@
-CityA CityB 100 flight
-CityB CityC 200 rail
-CityA CityD 300 rail
-CityD CityC 150 flight
-CityC CityA 250 rail
-CityA CityC 100 rail
