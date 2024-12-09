@@ -19,8 +19,8 @@ class Graph {
   // Add an edge (travel proposition)
   void addEdge(const TravelProposition& proposition);
 
-  // BFS to find any path between two vertices
-  std::stack<TravelProposition> bfsFindPath(const std::string& start, const std::string& end);
+  // Check if a vertex exists in the graph
+  bool contains(const std::string& city) const;
 
   // Dijkstra's Algorithm to find the shortest path
   bool dijkstraShortestPath(const std::string& start, const std::string& end,

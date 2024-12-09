@@ -4,6 +4,7 @@
 // Conversion factors (unit -> kilometers)
 const std::unordered_map<std::string, double> Unit::conversionFactors = {
     {"km", 1.0},         // Kilometers
+    {"kilometers", 1.0}, // Kilometers
     {"miles", 1.60934},  // Miles to kilometers
     {"meters", 0.001},   // Meters to kilometers
     {"feet", 0.0003048}  // Feet to kilometers

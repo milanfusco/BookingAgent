@@ -14,13 +14,21 @@ void Graph::addVertex(const std::string& city) {
 
 // Add an edge
 void Graph::addEdge(const TravelProposition& proposition) {
-  if (vertices.find(proposition.getCityA()) != vertices.end() &&
-      vertices.find(proposition.getCityB()) != vertices.end()) {
-    edges.insert(proposition);
-    updateAdjacencyList(proposition);
-  } else {
-    throw std::invalid_argument("One or both cities are not in the graph.");
+  const std::string& cityA = proposition.getCityA();
+  const std::string& cityB = proposition.getCityB();
+
+  if (vertices.find(cityA) == vertices.end() || vertices.find(cityB) == vertices.end()) {
+        throw std::invalid_argument("One or both cities are not in the graph: " + cityA + " -> " + cityB);
   }
+
+  edges.insert(proposition);
+  updateAdjacencyList(proposition);
+}
+
+
+// Check if a vertex exists in the graph
+bool Graph::contains(const std::string& city) const {
+    return vertices.find(city) != vertices.end();
 }
 
 // Update adjacency list
@@ -40,49 +48,6 @@ void Graph::displayGraph() const {
   }
 }
 
-// BFS to find any path
-std::stack<TravelProposition> Graph::bfsFindPath(const std::string& start,
-                                                 const std::string& end) {
-  if (vertices.find(start) == vertices.end() ||
-      vertices.find(end) == vertices.end()) {
-    throw std::invalid_argument("One or both cities are not in the graph.");
-  }
-
-  std::queue<std::string> queue;
-  std::unordered_map<std::string, TravelProposition>
-      previousEdge;  // Maps city to its incoming edge
-  std::unordered_map<std::string, bool> visited;
-
-  queue.push(start);
-  visited[start] = true;
-
-  while (!queue.empty()) {
-    std::string current = queue.front();
-    queue.pop();
-
-    if (current == end) {
-      // Build the path using the previousEdge map
-      std::stack<TravelProposition> path;
-      while (current != start) {
-        const TravelProposition& edge = previousEdge[current];
-        path.push(edge);
-        current = edge.getCityA();
-      }
-      return path;
-    }
-
-    for (const auto& edge : adjacencyList[current]) {
-      const std::string& neighbor = edge.getCityB();
-      if (!visited[neighbor]) {
-        visited[neighbor] = true;
-        previousEdge[neighbor] = edge;
-        queue.push(neighbor);
-      }
-    }
-  }
-
-  throw std::runtime_error("No path found between the specified vertices.");
-}
 
 // Dijkstra's Algorithm to find the shortest path
 bool Graph::dijkstraShortestPath(const std::string& start,
