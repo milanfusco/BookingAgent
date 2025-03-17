@@ -51,11 +51,17 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
     - name: Ensure data files exist
+      shell: bash
       run: |
-        mkdir -p ${{ github.workspace }}/data
-        echo "Placeholder data files created"
+        if [ ! -d "${{ github.workspace }}/data" ]; then
+          mkdir -p ${{ github.workspace }}/data
+          echo "Created data directory."
+        else
+          echo "Data directory already exists."
+        fi
         touch ${{ github.workspace }}/data/cities.db
         touch ${{ github.workspace }}/data/travel_proposition.db
+
 
     - name: Configure CMake
       run: >
