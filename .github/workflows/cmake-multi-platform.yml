@@ -50,31 +50,6 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - name: Ensure data files exist
-      shell: bash
-      run: |
-        if [ ! -d "${{ github.workspace }}/data" ]; then
-          mkdir -p ${{ github.workspace }}/data
-          echo "Created data directory."
-        else
-          echo "Data directory already exists."
-        fi
-        touch ${{ github.workspace }}/data/cities.db
-        touch ${{ github.workspace }}/data/travel_proposition.db"
-
-    - name: Ensure data files exist (Windows)
-      if: runner.os == 'Windows'
-      shell: pwsh
-      run: |
-        if (-Not (Test-Path "${{ github.workspace }}\data")) {
-          New-Item -ItemType Directory -Path "${{ github.workspace }}\data"
-          Write-Host "Created data directory."
-        } else {
-          Write-Host "Data directory already exists."
-        }
-        New-Item -ItemType File -Path "${{ github.workspace }}\data\cities.db" -Force
-        New-Item -ItemType File -Path "${{ github.workspace }}\data\travel_proposition.db" -Force
-
 
     - name: Configure CMake
       run: >
