@@ -1,5 +1,7 @@
 # BookingAgent
 
+[![CMake on multiple platforms](https://github.com/milanfusco/BookingAgent/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/milanfusco/BookingAgent/actions/workflows/cmake-multi-platform.yml)
+
 **BookingAgent** is a C++ program designed to calculate the shortest travel path between cities, considering available transportation options like high-speed rail and flights. It uses a graph-based approach to model city connections and applies Dijkstra's algorithm to find the optimal path.
 
 ## Features
